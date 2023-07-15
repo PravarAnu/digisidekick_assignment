@@ -4,8 +4,8 @@ import JWT from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 
-import AuthRoles from "../util/authRoles.util.js";
-import config from "../config/index.config.js"
+import AuthRoles from "../utils/authRoles.util.js";
+import config from "../configs/index.config.js"
 
 const userSchema = new mongoose.Schema({
     name: {
