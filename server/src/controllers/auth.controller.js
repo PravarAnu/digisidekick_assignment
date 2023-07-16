@@ -139,9 +139,7 @@ export const GetProfile = asyncHandler(async (req, res) => {
 })
 
 export const GetAllProfile  = asyncHandler(async (req,res)=>{
-    const {id: userId} = req.params;
-
-    const allProfile = await User.find({_id:{ $not: userId}});
+    const allProfile = await User.find({});
 
     if(!allProfile){
         throw new customError("No user found", 404);
@@ -150,5 +148,40 @@ export const GetAllProfile  = asyncHandler(async (req,res)=>{
     res.status(200).json({
         success: true,
         allProfile
+    })
+})
+
+
+export const DeleteUser = asyncHandler(async (req,res)=>{
+    const {id: userId} = req.params;
+
+    const user  = await User.findByIdAndDelete(userId);
+
+    if(!user){
+        throw new customError("User Doesn't Exists", 401);
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "User Deleted Successfuly",
+        user
+    })
+})
+
+
+export const UpdateUser = asyncHandler(async (req,res)=>{
+    const {id: userId} = req.params;
+    const {email, password, role} = req.body;
+
+    const user = await User.findByIdAndUpdate(userId, {email, password, role});
+
+    if(!user){
+        throw new customError("User Doesn't exists", 401);
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "User Updated Successfully",
+        user
     })
 })
