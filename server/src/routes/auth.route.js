@@ -10,14 +10,14 @@ const router = Router();
 
 
 router.get("/users", GetAllProfile);
-router.post("/user", LogIn);
-router.post("/deleteUser/:id", DeleteUser);
-router.post("/updateUser/:id", UpdateUser);
+router.post("/users", SignUp);
+router.delete("/deleteUser/:id", DeleteUser);
+router.patch("/updateUser/:id", UpdateUser);
 
 
 
 
-router.post("/signUp", SignUp);
+router.post("/logIn", LogIn);
 router.post("/logOut", LogOut);
 router.post("/password/reset", isLoggedIn, ResetPassword);
 
