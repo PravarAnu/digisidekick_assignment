@@ -141,7 +141,7 @@ export const GetProfile = asyncHandler(async (req, res) => {
 export const GetAllProfile  = asyncHandler(async (req,res)=>{
     const allProfile = await User.find({});
 
-    if(!allProfile){
+    if(allProfile.length === 0){
         throw new customError("No user found", 404);
     }
 
@@ -171,9 +171,9 @@ export const DeleteUser = asyncHandler(async (req,res)=>{
 
 export const UpdateUser = asyncHandler(async (req,res)=>{
     const {id: userId} = req.params;
-    const {email, password, role} = req.body;
+    const {name, email, password, role} = req.body;
 
-    const user = await User.findByIdAndUpdate(userId, {email, password, role});
+    const user = await User.findByIdAndUpdate(userId, {name, email, password, role});
 
     if(!user){
         throw new customError("User Doesn't exists", 401);

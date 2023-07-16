@@ -2,7 +2,7 @@ import JWT from "jsonwebtoken";
 
 import User from "../models/user.schema.js";
 
-import config from "../config/index.config.js";
+import config from "../configs/index.config.js";
 
 import asyncHandler from "../services/asyncHandler.service.js";
 import customError from "../utils/customError.util.js";
